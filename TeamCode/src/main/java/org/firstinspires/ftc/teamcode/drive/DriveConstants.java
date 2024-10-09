@@ -22,7 +22,8 @@ public class DriveConstants {
      * These are motor constants that should be listed online for your motors.
      */
     public static final double TICKS_PER_REV = 537.6;
-    public static final double MAX_RPM = 666.666;
+    public static final double MAX_RPM = 312.5;
+
 
     /*
      * Set RUN_USING_ENCODER to true to enable built-in hub velocity control using drive encoders.
@@ -45,12 +46,12 @@ public class DriveConstants {
      * angular distances although most angular parameters are wrapped in Math.toRadians() for
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
+
     public static double WHEEL_RADIUS = 3.77963; // in
-    //probably wrong
-    public static double GEAR_RATIO = 1; // output (wheel) speed / input (motor) speed
+    public static double GEAR_RATIO = 1/9; // output (wheel) speed / input (motor) speed
     public static double TRACK_WIDTH = 14.5; // in
 
-    /*
+    /*/
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
      * the built-in velocity PID, *these values are fine as is*. However, if you do not have drive
      * motor encoders or have elected not to use them for velocity control, these values should be
@@ -67,8 +68,10 @@ public class DriveConstants {
      * small and gradually increase them later after everything is working. All distance units are
      * inches.
      */
+  
     public static double MAX_VEL = 123.6881025134124;
     public static double MAX_ACCEL = 30;
+
     public static double MAX_ANG_VEL = Math.toRadians(8.530213966442234);
     public static double MAX_ANG_ACCEL = Math.toRadians(60);
 
@@ -79,7 +82,6 @@ public class DriveConstants {
             RevHubOrientationOnRobot.LogoFacingDirection.FORWARD;
     public static RevHubOrientationOnRobot.UsbFacingDirection USB_FACING_DIR =
             RevHubOrientationOnRobot.UsbFacingDirection.UP;
-
 
     public static double encoderTicksToInches(double ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
