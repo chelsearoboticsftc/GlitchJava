@@ -24,6 +24,7 @@ public class DriveConstants {
     public static final double TICKS_PER_REV = 537.6;
     public static final double MAX_RPM = 312.5;
 
+
     /*
      * Set RUN_USING_ENCODER to true to enable built-in hub velocity control using drive encoders.
      * Set this flag to false if drive encoders are not present and an alternative localization
@@ -32,6 +33,7 @@ public class DriveConstants {
      * If using the built-in motor velocity PID, update MOTOR_VELO_PID with the tuned coefficients
      * from DriveVelocityPIDTuner.
      */
+    //leave false
     public static final boolean RUN_USING_ENCODER = false;
     public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(0, 0, 0,
             getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV));
@@ -53,7 +55,7 @@ public class DriveConstants {
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
      * the built-in velocity PID, *these values are fine as is*. However, if you do not have drive
      * motor encoders or have elected not to use them for velocity control, these values should be
-     * empirically tuned.
+     *  b
      */
     public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
     public static double kA = 0;
@@ -66,9 +68,10 @@ public class DriveConstants {
      * small and gradually increase them later after everything is working. All distance units are
      * inches.
      */
-
+  
     public static double MAX_VEL = 123.6881025134124;
-    public static double MAX_ACCEL = 30; //Test to find this value
+    public static double MAX_ACCEL = 30;
+
     public static double MAX_ANG_VEL = Math.toRadians(8.530213966442234);
     public static double MAX_ANG_ACCEL = Math.toRadians(60);
 
@@ -76,10 +79,9 @@ public class DriveConstants {
      * Adjust the orientations here to match your robot. See the FTC SDK documentation for details.
      */
     public static RevHubOrientationOnRobot.LogoFacingDirection LOGO_FACING_DIR =
-            RevHubOrientationOnRobot.LogoFacingDirection.UP;
+            RevHubOrientationOnRobot.LogoFacingDirection.FORWARD;
     public static RevHubOrientationOnRobot.UsbFacingDirection USB_FACING_DIR =
-            RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
-
+            RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
     public static double encoderTicksToInches(double ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
