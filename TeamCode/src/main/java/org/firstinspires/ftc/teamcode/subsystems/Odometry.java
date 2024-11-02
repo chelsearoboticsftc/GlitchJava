@@ -25,6 +25,7 @@ public class Odometry {
                                                     OdometryConstants.ODO_CENTER_DIRECTION);
 
         // Any changes that are made should be saved in FLASH just in case there is a sensor power glitch.
+        octoquad.setAllVelocitySampleIntervals(OdometryConstants.VELOCITY_SAMPLE_INTERVAL_MS);
         octoquad.saveParametersToFlash();
 
         // Set all the encoder inputs to zero.
@@ -50,15 +51,16 @@ public class Odometry {
     }
 
     public short getLeftEncoderVelocity(){
-        return velocities[OdometryConstants.ODO_LEFT];
+
+        return (short) (velocities[OdometryConstants.ODO_LEFT]*OdometryConstants.VELOCITY_SAMPLES_PER_S);
     }
 
     public short getRightEncoderVelocity(){
-        return velocities[OdometryConstants.ODO_RIGHT];
+        return (short) (velocities[OdometryConstants.ODO_RIGHT]*OdometryConstants.VELOCITY_SAMPLES_PER_S);
     }
 
     public short getCenterEncoderVelocity(){
-        return velocities[OdometryConstants.ODO_CENTER];
+        return (short) (velocities[OdometryConstants.ODO_CENTER]*OdometryConstants.VELOCITY_SAMPLES_PER_S);
     }
 
     public void resetEncoderCounts(){

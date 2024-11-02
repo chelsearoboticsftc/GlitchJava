@@ -31,7 +31,7 @@ public class TestOdoPods extends LinearOpMode {
 
             telemetry.addData("Left Opopod Count", odometry.getLeftEncoderCounts());
             telemetry.addData("Right Opopod Count", odometry.getRightEncoderCounts());
-            telemetry.addData("Left Opopod Count", odometry.getCenterEncoderCounts());
+            telemetry.addData("Center Opopod Count", odometry.getCenterEncoderCounts());
             telemetry.update();
         }
 
