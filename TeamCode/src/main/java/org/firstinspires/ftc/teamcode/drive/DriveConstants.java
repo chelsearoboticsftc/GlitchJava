@@ -69,8 +69,9 @@ public class DriveConstants {
      * inches.
      */
   
-    public static double MAX_VEL = 30;
-    public static double MAX_ACCEL = 30;
+    public static double MAX_VEL =50;
+    public static double MAX_ACCEL = 50;
+    //if changed rerun manual feed forward tuner and pid
 
     public static double MAX_ANG_VEL = Math.toRadians(287.46328256944776);
     public static double MAX_ANG_ACCEL = Math.toRadians(60);

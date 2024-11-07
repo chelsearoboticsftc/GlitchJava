@@ -10,14 +10,14 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous
-public class SmurfNeutSamplesBlue extends LinearOpMode {
+public class SmurfMattSamplesRed extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drivetrain = new SampleMecanumDrive(hardwareMap);
 
-        Pose2d startingPose = new Pose2d(39.5,62,Math.toRadians(270));
-        Vector2d wayPoint1 = new Vector2d(34,24);
-        Pose2d parkPosition = new Pose2d(21,11,0);
+        Pose2d startingPose = new Pose2d(-39.5,-62,Math.toRadians(90));
+        Vector2d wayPoint1 = new Vector2d(-34,-24);
+        Pose2d parkPosition = new Pose2d(-21,-11,0);
 
         TrajectoryVelocityConstraint velocityConstraint;
 
@@ -27,18 +27,18 @@ public class SmurfNeutSamplesBlue extends LinearOpMode {
                 .forward(2)
                 .strafeLeft(18)
                 .strafeRight(4)
-                .splineToConstantHeading(wayPoint1,Math.toRadians(270))
+                .splineToConstantHeading(wayPoint1,Math.toRadians(90))
                 .forward(12)
                 //Neutral sample 1
-                .strafeLeft(15)
+                .strafeLeft(14)
                 .back(40)
                 .forward(40)
                 //Neutral sample 2
-                .strafeLeft(14)
+                .strafeLeft(10)
                 .back(42)
                 .forward(42)
                 //Neutral sample 3
-                .strafeLeft(6.5)
+                .strafeLeft(4.5)
                 .back(40)
                 .forward(2)
                 //Clean up!
