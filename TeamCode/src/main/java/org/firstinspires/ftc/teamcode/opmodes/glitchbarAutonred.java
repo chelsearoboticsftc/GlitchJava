@@ -27,7 +27,7 @@ public class glitchbarAutonred extends LinearOpMode {
                         .forward(5)
                         .strafeRight(40)
                         .forward(5)
-                        .build();
+                .build();
         waitForStart();
 
         drivetrain.followTrajectorySequence(glitchbarAutonred);
