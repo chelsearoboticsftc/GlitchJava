@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ArmConstants;
 
+@TeleOp
 public class TestArm extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
@@ -60,6 +62,7 @@ public class TestArm extends LinearOpMode {
             telemetry.addData("armMaxVelocity",armMaxVelocity);
             telemetry.addData("slidePosition",slidePosition);
             telemetry.addData("slideMaxVelocity",slideMaxVelocity);
+            telemetry.update();
 
         }
     }
