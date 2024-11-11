@@ -25,7 +25,7 @@ public class TestArm extends LinearOpMode {
             armPosition = arm.getArmPosition();
             slidePosition = arm.getSlidePosition();
 
-            if((gamepad1.x) &&
+            /*if((gamepad1.x) &&
                (armPosition < ArmConstants.ARM_MAX_POSITION_TICKS))
             {
                 arm.setArmMotorPower(.8);
@@ -42,20 +42,25 @@ public class TestArm extends LinearOpMode {
             {
                 arm.setSlideMotorPower(-.8);
             }else if((gamepad1.y) &&
-                     (slidePosition< ArmConstants.ARM_MINIMUM_POSITION_TICKS)){
+                     (slidePosition < ArmConstants.SLIDE_MAX_POSITION_TICKS))
+            {
                 arm.setSlideMotorPower(.8);
             }else{
                 arm.setSlideMotorPower(0);
             }
 
             armVelocity = arm.getArmVelocity();
-            if (armVelocity > armMaxVelocity){
-                armMaxVelocity = armVelocity;
+            if (Math.abs(armVelocity) > armMaxVelocity){
+                armMaxVelocity = Math.abs(armVelocity);
             }
 
             slideVelocity = arm.getSlideVelocity();
-            if (slideVelocity > slideMaxVelocity){
-                slideMaxVelocity = slideVelocity;
+            if (Math.abs(slideVelocity) > slideMaxVelocity){
+                slideMaxVelocity = Math.abs(slideVelocity);
+            }*/
+
+            if(gamepad1.y){
+                arm.setSlideMotorPositon(7000);
             }
 
             telemetry.addData("armposition",armPosition);

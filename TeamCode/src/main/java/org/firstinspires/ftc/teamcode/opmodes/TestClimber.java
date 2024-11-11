@@ -21,23 +21,25 @@ public class TestClimber extends LinearOpMode {
         while(opModeIsActive()){
             climberPosition = climber.getClimberPosition();
 
-            if((gamepad1.a) &&
-               (climberPosition < ClimberConstants.CLIMBER_MAX_POSITION_TICKS))
+            if((gamepad1.a)) //&&
+               //(climberPosition < ClimberConstants.CLIMBER_MAX_POSITION_TICKS))
             {
                 climber.setClimberPower(0.8);
-            }else if((gamepad1.b)&&
-                     (climberPosition > ClimberConstants.CLIMBER_MIN_POSITION_TICKS)){
+            }else if((gamepad1.b)) //&&
+                     //(climberPosition > ClimberConstants.CLIMBER_MIN_POSITION_TICKS))
+            {
                 climber.setClimberPower(-0.8);
             }else{
                 climber.setClimberPower(0);
             }
 
             climberVelocity=climber.getClimberVelocity();
-            if(climberVelocity>climberMaxVelocity){
-                climberMaxVelocity = climberVelocity;
+            if(Math.abs(climberVelocity)>climberMaxVelocity){
+                climberMaxVelocity = Math.abs(climberVelocity);
             }
 
             telemetry.addData("climberPosition",climberPosition);
+            telemetry.addData("climberMaxVelocity",climberMaxVelocity);
             telemetry.update();
 
         }

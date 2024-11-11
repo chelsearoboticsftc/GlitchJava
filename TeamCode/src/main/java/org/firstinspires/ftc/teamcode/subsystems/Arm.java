@@ -9,6 +9,7 @@ public class Arm {
     DcMotorEx slideMotor;
     DcMotorEx armMotor;
     DcMotorEx intakeMotor;
+
     DigitalChannel frontTouch;
     DigitalChannel backTouch;
     DigitalChannel linearSlideTouch;
@@ -17,9 +18,9 @@ public class Arm {
         this.slideMotor = hardwareMap.get(DcMotorEx.class,"Slide_motor");
         this.armMotor = hardwareMap.get(DcMotorEx.class,"Arm_rotater_motor");
         this.intakeMotor = hardwareMap.get(DcMotorEx.class,"intakeMotor");
-        this.frontTouch = hardwareMap.get(DigitalChannel.class, "frontTouch");
-        this.backTouch = hardwareMap.get(DigitalChannel.class, "backTouch");
-        this.linearSlideTouch = hardwareMap.get(DigitalChannel.class, "linearSlideTouch");
+        //this.frontTouch = hardwareMap.get(DigitalChannel.class, "frontTouch");
+        //this.backTouch = hardwareMap.get(DigitalChannel.class, "backTouch");
+        //this.linearSlideTouch = hardwareMap.get(DigitalChannel.class, "linearSlideTouch");
 
         //set what motor does when unpowered
         armMotor.setZeroPowerBehavior(ArmConstants.ARM_ZERO_POWER_MODE);
@@ -48,11 +49,11 @@ public class Arm {
     }
 
     public int getSlidePosition(){
-        return armMotor.getCurrentPosition();
+        return slideMotor.getCurrentPosition();
     }
 
     public double getSlideVelocity(){
-        return armMotor.getVelocity();
+        return slideMotor.getVelocity();
     }
 
     public int getIntakePosition(){
@@ -88,6 +89,19 @@ public class Arm {
         slideMotor.setTargetPosition(positon);
         slideMotor.setVelocity(ArmConstants.SLIDE_SPEED_TICKS_PER_SECOND);
         slideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void setIntakePower(double power){
+        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intakeMotor.setPower(power);
+    }
+
+    public boolean isSlideMotorBusy(){
+        return slideMotor.isBusy();
+    }
+
+    public boolean isArmMotorBusy(){
+        return armMotor.isBusy();
     }
 
     public boolean isFrontTouched(){
