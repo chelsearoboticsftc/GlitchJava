@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -11,7 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous
-public class LowBasketRed extends LinearOpMode {
+public class HighBasketRed extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -20,8 +19,8 @@ public class LowBasketRed extends LinearOpMode {
         Arm arm = new Arm(hardwareMap);
 
         Pose2d startingPose = new Pose2d(-39.5,-62,Math.toRadians(180));
-        Pose2d wayPoint1 = new Pose2d(-40,-12,Math.toRadians(110));
-        Pose2d parkPosition = new Pose2d(-21,-11,0);
+        Pose2d wayPoint1 = new Pose2d(-44,-24,Math.toRadians(110));
+        Pose2d parkPosition = new Pose2d(-21,0,0);
 
         drivetrain.setPoseEstimate(startingPose);
 
@@ -37,7 +36,13 @@ public class LowBasketRed extends LinearOpMode {
         TrajectorySequence getNeutralSample = drivetrain.trajectorySequenceBuilder(lowBasketRed.end())
                 .strafeRight(10)
                 .turn(Math.toRadians(-70))
-                .splineToLinearHeading(wayPoint1,Math.toRadians(90))
+                .splineToLinearHeading(wayPoint1,Math.toRadians(110))
+                .forward(12)
+                .strafeLeft(16)
+                .back(24)
+                //.strafeTo(new Vector2d(-60,-70))
+                .splineToConstantHeading(new Vector2d(-60,-70),110)
+                .splineToLinearHeading(parkPosition,0)
                 .build();
 
         waitForStart();

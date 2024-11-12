@@ -7,13 +7,16 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous
 public class SmurfNeutSamplesBlue extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
+        //Create Arm instance if only to initialize the arm/slide encoders
         SampleMecanumDrive drivetrain = new SampleMecanumDrive(hardwareMap);
+        Arm arm = new Arm(hardwareMap);
 
         Pose2d startingPose = new Pose2d(39.5,62,Math.toRadians(270));
         Vector2d wayPoint1 = new Vector2d(34,24);
