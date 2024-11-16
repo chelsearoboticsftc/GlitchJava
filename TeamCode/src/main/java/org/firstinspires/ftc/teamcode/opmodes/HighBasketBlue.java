@@ -11,16 +11,15 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous
 public class HighBasketBlue extends LinearOpMode {
-    @Override
-    public void runOpMode() throws InterruptedException {
-
+@Override
+public void runOpMode() throws InterruptedException {
         int slidePosition = 0;
         SampleMecanumDrive drivetrain = new SampleMecanumDrive(hardwareMap);
         Arm arm = new Arm(hardwareMap);
 
-        Pose2d startingPose = new Pose2d(39.5,62,Math.toRadians(180));
-        Pose2d wayPoint1 = new Pose2d(44,24,Math.toRadians(110));
-        Pose2d parkPosition = new Pose2d(21,0,0);
+        Pose2d startingPose = new Pose2d(40.5,64,Math.toRadians(0));
+        Pose2d wayPoint1 = new Pose2d(34,24,Math.toRadians(270));
+        Pose2d parkPosition = new Pose2d(21,10,Math.toRadians(180));
 
         drivetrain.setPoseEstimate(startingPose);
 
@@ -29,20 +28,20 @@ public class HighBasketBlue extends LinearOpMode {
                 .waitSeconds(2)
                 .addTemporalMarker(()->arm.setIntakePower(1))
                 .waitSeconds(1)
-                .back(6)
+                .back(8)
                 .addTemporalMarker(()->arm.setIntakePower(0))
                 .build();
 
         TrajectorySequence getNeutralSample = drivetrain.trajectorySequenceBuilder(lowBasketRed.end())
                 .strafeRight(10)
-                .turn(Math.toRadians(-70))
-                .splineToLinearHeading(wayPoint1,Math.toRadians(110))
+                .turn(Math.toRadians(-90))
+                .splineToLinearHeading(wayPoint1,Math.toRadians(270))
                 .forward(12)
-                .strafeLeft(16)
-                .back(24)
-                //.strafeTo(new Vector2d(-60,-70))
-                .splineToConstantHeading(new Vector2d(-60,-70),110)
-                .splineToLinearHeading(parkPosition,0)
+                .strafeLeft(12)
+                .back(18)
+                .splineToConstantHeading(new Vector2d(60,60),Math.toRadians(270))
+                .addTemporalMarker(()->arm.setArmMotorPositon(500))
+                .splineToLinearHeading(parkPosition,Math.toRadians(180))
                 .build();
 
         waitForStart();
@@ -54,7 +53,7 @@ public class HighBasketBlue extends LinearOpMode {
             arm.isSlideMotorBusy();
             arm.isArmMotorBusy();
             if((!arm.isSlideMotorBusy())&&
-                    (!arm.isArmMotorBusy())){
+               (!arm.isArmMotorBusy())){
                 break;
             }
         }
@@ -68,7 +67,7 @@ public class HighBasketBlue extends LinearOpMode {
             }
         }
 
-        //drivetrain.followTrajectorySequence(getNeutralSample);
+        drivetrain.followTrajectorySequence(getNeutralSample);
 
     }
 }

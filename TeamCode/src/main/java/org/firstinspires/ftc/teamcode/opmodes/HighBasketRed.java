@@ -9,23 +9,22 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-        @Autonomous
-        public class HighBasketRed extends LinearOpMode {
-            @Override
-            public void runOpMode() throws InterruptedException {
+@Autonomous
+public class HighBasketRed extends LinearOpMode {
+@Override
+public void runOpMode() throws InterruptedException {
+        int slidePosition = 0;
+        SampleMecanumDrive drivetrain = new SampleMecanumDrive(hardwareMap);
+        Arm arm = new Arm(hardwareMap);
 
-                int slidePosition = 0;
-                SampleMecanumDrive drivetrain = new SampleMecanumDrive(hardwareMap);
-                Arm arm = new Arm(hardwareMap);
-
-                Pose2d startingPose = new Pose2d(-39.5,-62,Math.toRadians(180));
-        Pose2d wayPoint1 = new Pose2d(-44,-24,Math.toRadians(110));
-        Pose2d parkPosition = new Pose2d(-21,0,0);
+        Pose2d startingPose = new Pose2d(-40.5,-64,Math.toRadians(180));
+        Pose2d wayPoint1 = new Pose2d(-36,-24,Math.toRadians(90));
+        Pose2d parkPosition = new Pose2d(-21,-10,0);
 
         drivetrain.setPoseEstimate(startingPose);
 
         TrajectorySequence lowBasketRed = drivetrain.trajectorySequenceBuilder(startingPose)
-                .forward(8)
+                .forward(10)
                 .waitSeconds(2)
                 .addTemporalMarker(()->arm.setIntakePower(1))
                 .waitSeconds(1)
@@ -35,13 +34,13 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
         TrajectorySequence getNeutralSample = drivetrain.trajectorySequenceBuilder(lowBasketRed.end())
                 .strafeRight(10)
-                .turn(Math.toRadians(-70))
-                .splineToLinearHeading(wayPoint1,Math.toRadians(110))
+                .turn(Math.toRadians(-90))
+                .splineToLinearHeading(wayPoint1,Math.toRadians(90))
                 .forward(12)
-                .strafeLeft(16)
-                .back(24)
-                //.strafeTo(new Vector2d(-60,-70))
-                .splineToConstantHeading(new Vector2d(-60,-70),110)
+                .strafeLeft(12)
+                .back(18)
+                .splineToConstantHeading(new Vector2d(-60,-60),90)
+                .addTemporalMarker(()->arm.setArmMotorPositon(500))
                 .splineToLinearHeading(parkPosition,0)
                 .build();
 
